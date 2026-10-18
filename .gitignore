@@ -1,0 +1,7 @@
+data/
+artifacts/
+mlruns/
+results/raw/
+*.onnx
+*.safetensors
+.env

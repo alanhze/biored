@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "biored"
+version = "0.1.0"
+requires-python = ">=3.11"
+dependencies = ["numpy", "pandas", "pyyaml", "bioc>=2.1", "mlflow"]
+
+[project.optional-dependencies]
+frontier = ["anthropic"]
+train = ["torch", "transformers", "datasets", "peft", "trl", "bitsandbytes", "accelerate", "onnx", "onnxruntime"]
+serve = ["onnxruntime", "tokenizers", "fastapi", "uvicorn[standard]", "httpx"]
+dev = ["pytest", "ruff", "httpx"]
+
+[tool.setuptools.packages.find]
+where = ["src"]

@@ -1,0 +1,31 @@
+Metadata-Version: 2.4
+Name: biored
+Version: 0.1.0
+Requires-Python: >=3.11
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: pyyaml
+Requires-Dist: bioc>=2.1
+Requires-Dist: mlflow
+Provides-Extra: frontier
+Requires-Dist: anthropic; extra == "frontier"
+Provides-Extra: train
+Requires-Dist: torch; extra == "train"
+Requires-Dist: transformers; extra == "train"
+Requires-Dist: datasets; extra == "train"
+Requires-Dist: peft; extra == "train"
+Requires-Dist: trl; extra == "train"
+Requires-Dist: bitsandbytes; extra == "train"
+Requires-Dist: accelerate; extra == "train"
+Requires-Dist: onnx; extra == "train"
+Requires-Dist: onnxruntime; extra == "train"
+Provides-Extra: serve
+Requires-Dist: onnxruntime; extra == "serve"
+Requires-Dist: tokenizers; extra == "serve"
+Requires-Dist: fastapi; extra == "serve"
+Requires-Dist: uvicorn[standard]; extra == "serve"
+Requires-Dist: httpx; extra == "serve"
+Provides-Extra: dev
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: ruff; extra == "dev"
+Requires-Dist: httpx; extra == "dev"

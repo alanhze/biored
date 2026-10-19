@@ -1,7 +1,66 @@
+# 1. Research data (do not commit abstract text)
 data/
-artifacts/
-mlruns/
 results/raw/
+
+# 2. Trained models and checkpoints
+artifacts/
 *.onnx
 *.safetensors
+*.pt
+*.pth
+*.ckpt
+*.bin
+checkpoints/
+outputs/
+
+# 3. MLflow experiment tracking
+mlruns/
+mlartifacts/
+
+# 4. Environment variables and API secrets
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets.json
+credentials.json
+
+# 5. Python cache and compiled files
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# 6. Virtual environments
+.venv/
+venv/
+env/
+
+# 7. Packaging and build files
+build/
+dist/
+*.egg-info/
+
+# 8. Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# 9. Test coverage
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# 10. Logs and temporary files
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# 11. Cloud and local configuration
+.gcloud/
+.kaggle/
+.kube/

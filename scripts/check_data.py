@@ -1,4 +1,8 @@
-"""scripts/check_data.py"""
+"""Load every split through biored.data and check it against the Phase 1 counts.
+
+Exit code 1 if a count differs from DATA_CARD.md or an offset doesn't line up with the text.
+Usage: python scripts/check_data.py [--config configs/data.yaml] [--root DIR]
+"""
 import argparse
 import sys
 from collections import Counter
@@ -7,8 +11,28 @@ from biored.data import allowed_type_pairs, candidate_pairs, load_config, load_s
 
 # (docs, mention lines, relations) from DATA_CARD.md section 2
 EXPECTED = {"train": (500, 16_884, 5_340), "dev": (100, 3_535, 1_163), "test": (400, 15_404, 6_036)}
-# Exceptions already explained in DATA_CARD.md section 5
-KNOWN_MISSING = {"train": 0, "dev": 0, "test": 3}
+# Gold relations no pair-based model can predict, by reason (DATA_CARD.md section 5):
+#   dash_endpoint  an argument is "-" (mention annotated without a normalized ID)
+#   no_mention     an argument ID that no mention in the document carries
+#   self_relation  e1 == e2, e.g. a protein binding itself; candidate pairs are distinct IDs
+#   type_pair      both ends exist but their type pair never occurs in train
+KNOWN_UNREACHABLE = {
+    "train": {"self_relation": 4},
+    "dev": {},
+    "test": {"dash_endpoint": 10, "no_mention": 3, "self_relation": 4, "type_pair": 1},
+}
+
+
+def unreachable_reason(d, r, cands):
+    if "-" in (r.e1, r.e2):
+        return "dash_endpoint"
+    if r.e1 not in d.entities or r.e2 not in d.entities:
+        return "no_mention"
+    if r.e1 == r.e2:
+        return "self_relation"
+    if r.key not in cands:
+        return "type_pair"
+    return None
 
 ap = argparse.ArgumentParser()
 ap.add_argument("--config", default="configs/data.yaml")
@@ -26,30 +50,29 @@ failures = []
 for name, docs in splits.items():
     n_rel = sum(len(d.relations) for d in docs)
     n_ment = sum(d.n_mention_lines for d in docs)
-    missing = [(d.pmid, r) for d in docs for r in d.relations
-               if r.e1 not in d.entities or r.e2 not in d.entities]
     dups = sum(len(d.relations) - len({r.key for r in d.relations}) for d in docs)
     bad_spans = [(d.pmid, m.start, m.end, m.text, d.text[m.start:m.end])
                  for d in docs for e in d.entities.values() for m in e.mentions
                  if d.text[m.start:m.end] != m.text]
-    reach = n_cand = type_blocked = 0
-    blocked_examples = []
+    reach = n_cand = 0
+    unreachable = []   # (reason, pmid, relation)
     for d in docs:
         cands = set(candidate_pairs(d, allowed))
         n_cand += len(cands)
         for r in d.relations:
-            if r.key in cands:
+            why = unreachable_reason(d, r, cands)
+            if why:
+                unreachable.append((why, d.pmid, r))
+            else:
                 reach += 1
-            elif r.e1 in d.entities and r.e2 in d.entities:
-                type_blocked += 1
-                blocked_examples.append((d.pmid, r.type, d.entities[r.e1].type, d.entities[r.e2].type))
+    by_reason = dict(Counter(u[0] for u in unreachable))
     warn = Counter(w.split("\t")[0] for d in docs for w in d.warnings)
     n_dir = sum(len(d.directions) for d in docs)
 
     print(f"\n## {name}")
     print(f"docs={len(docs)} mention_lines={n_ment} entities={sum(len(d.entities) for d in docs)} "
           f"rels={n_rel} direction_lines={n_dir}")
-    print(f"missing_endpoints={len(missing)} type_pair_not_in_train={type_blocked} dup_pairs={dups} "
+    print(f"unreachable_gold={len(unreachable)} {by_reason or ''} dup_pairs={dups} "
           f"span_mismatches={len(bad_spans)}")
     print(f"recall_ceiling={reach / max(n_rel, 1):.4f} ({reach}/{n_rel}) candidates={n_cand} "
           f"positive_share={n_rel / max(n_cand, 1):.3f}")
@@ -57,17 +80,15 @@ for name, docs in splits.items():
     print("  novelty:", dict(Counter(r.novel for d in docs for r in d.relations)))
     print("  entity types:", dict(Counter(e.type for d in docs for e in d.entities.values())))
     print("  warnings:", dict(warn) or "none")
-    if missing:
-        print("  missing endpoints:", missing[:5])
-    if blocked_examples:
-        print("  type pair not in train:", blocked_examples[:5])
+    for why, pmid, r in unreachable:   # IDs and labels only, safe to paste into the data card
+        print(f"  UNREACHABLE\t{why}\t{pmid}\t{r.type}\t{r.e1}\t{r.e2}\t{r.novel}")
     if bad_spans:
         print("  first span mismatches (pmid, start, end, file text, doc text):", bad_spans[:3])
 
     if (len(docs), n_ment, n_rel) != EXPECTED[name]:
         failures.append(f"{name}: counts {(len(docs), n_ment, n_rel)} != expected {EXPECTED[name]}")
-    if len(missing) != KNOWN_MISSING[name]:
-        failures.append(f"{name}: {len(missing)} missing endpoints, data card lists {KNOWN_MISSING[name]}")
+    if by_reason != KNOWN_UNREACHABLE[name]:
+        failures.append(f"{name}: unreachable gold {by_reason}, expected {KNOWN_UNREACHABLE[name]}")
     if bad_spans:
         failures.append(f"{name}: {len(bad_spans)} mention offsets don't match the text")
 

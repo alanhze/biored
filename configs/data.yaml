@@ -1,0 +1,4 @@
+root: data/kaggle
+train: [biored_train.pubtator, biored_dev_orig.pubtator]
+dev: [biored_test_orig.pubtator]
+test: [bc8_test.pubtator]

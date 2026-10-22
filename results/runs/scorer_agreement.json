@@ -1,0 +1,610 @@
+{
+  "gold": "biored_test_orig.pubtator",
+  "n_docs": 100,
+  "agreement": {
+    "identity": {
+      "pair": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_type": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_novelty": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_type_novelty": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      }
+    },
+    "empty": {
+      "pair": {
+        "check": [
+          0,
+          0,
+          1163
+        ],
+        "official": [
+          0,
+          0,
+          1163
+        ],
+        "official_f1": 0.0
+      },
+      "pair_type": {
+        "check": [
+          0,
+          0,
+          1163
+        ],
+        "official": [
+          0,
+          0,
+          1163
+        ],
+        "official_f1": 0.0
+      },
+      "pair_novelty": {
+        "check": [
+          0,
+          0,
+          1163
+        ],
+        "official": [
+          0,
+          0,
+          1163
+        ],
+        "official_f1": 0.0
+      },
+      "pair_type_novelty": {
+        "check": [
+          0,
+          0,
+          1163
+        ],
+        "official": [
+          0,
+          0,
+          1163
+        ],
+        "official_f1": 0.0
+      }
+    },
+    "reversed": {
+      "pair": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_type": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_novelty": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_type_novelty": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      }
+    },
+    "drop_30pct": {
+      "pair": {
+        "check": [
+          821,
+          0,
+          342
+        ],
+        "official": [
+          821,
+          0,
+          342
+        ],
+        "official_f1": 0.8276209677419355
+      },
+      "pair_type": {
+        "check": [
+          821,
+          0,
+          342
+        ],
+        "official": [
+          821,
+          0,
+          342
+        ],
+        "official_f1": 0.8276209677419355
+      },
+      "pair_novelty": {
+        "check": [
+          821,
+          0,
+          342
+        ],
+        "official": [
+          821,
+          0,
+          342
+        ],
+        "official_f1": 0.8276209677419355
+      },
+      "pair_type_novelty": {
+        "check": [
+          821,
+          0,
+          342
+        ],
+        "official": [
+          821,
+          0,
+          342
+        ],
+        "official_f1": 0.8276209677419355
+      }
+    },
+    "type_flip_20pct": {
+      "pair": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_type": {
+        "check": [
+          930,
+          233,
+          233
+        ],
+        "official": [
+          930,
+          233,
+          233
+        ],
+        "official_f1": 0.7996560619088564
+      },
+      "pair_novelty": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_type_novelty": {
+        "check": [
+          930,
+          233,
+          233
+        ],
+        "official": [
+          930,
+          233,
+          233
+        ],
+        "official_f1": 0.7996560619088564
+      }
+    },
+    "novelty_flip_20pct": {
+      "pair": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_type": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_novelty": {
+        "check": [
+          912,
+          251,
+          251
+        ],
+        "official": [
+          912,
+          251,
+          251
+        ],
+        "official_f1": 0.7841788478073947
+      },
+      "pair_type_novelty": {
+        "check": [
+          912,
+          251,
+          251
+        ],
+        "official": [
+          912,
+          251,
+          251
+        ],
+        "official_f1": 0.7841788478073947
+      }
+    },
+    "false_pos": {
+      "pair": {
+        "check": [
+          1163,
+          277,
+          0
+        ],
+        "official": [
+          1163,
+          277,
+          0
+        ],
+        "official_f1": 0.8935843257779484
+      },
+      "pair_type": {
+        "check": [
+          1163,
+          277,
+          0
+        ],
+        "official": [
+          1163,
+          277,
+          0
+        ],
+        "official_f1": 0.8935843257779484
+      },
+      "pair_novelty": {
+        "check": [
+          1163,
+          277,
+          0
+        ],
+        "official": [
+          1163,
+          277,
+          0
+        ],
+        "official_f1": 0.8935843257779484
+      },
+      "pair_type_novelty": {
+        "check": [
+          1163,
+          277,
+          0
+        ],
+        "official": [
+          1163,
+          277,
+          0
+        ],
+        "official_f1": 0.8935843257779484
+      }
+    },
+    "gene_variant_extra": {
+      "pair": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_type": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_novelty": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_type_novelty": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      }
+    },
+    "none_lines": {
+      "pair": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_type": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_novelty": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      },
+      "pair_type_novelty": {
+        "check": [
+          1163,
+          0,
+          0
+        ],
+        "official": [
+          1163,
+          0,
+          0
+        ],
+        "official_f1": 1.0
+      }
+    },
+    "all_association": {
+      "pair": {
+        "check": [
+          1163,
+          5884,
+          0
+        ],
+        "official": [
+          1163,
+          5884,
+          0
+        ],
+        "official_f1": 0.28331303288672355
+      },
+      "pair_type": {
+        "check": [
+          635,
+          6412,
+          528
+        ],
+        "official": [
+          635,
+          6412,
+          528
+        ],
+        "official_f1": 0.15468940316686966
+      },
+      "pair_novelty": {
+        "check": [
+          859,
+          6188,
+          304
+        ],
+        "official": [
+          859,
+          6188,
+          304
+        ],
+        "official_f1": 0.20925700365408037
+      },
+      "pair_type_novelty": {
+        "check": [
+          478,
+          6569,
+          685
+        ],
+        "official": [
+          478,
+          6569,
+          685
+        ],
+        "official_f1": 0.11644336175395859
+      }
+    },
+    "mixed": {
+      "pair": {
+        "check": [
+          941,
+          277,
+          222
+        ],
+        "official": [
+          941,
+          277,
+          222
+        ],
+        "official_f1": 0.7904241915161697
+      },
+      "pair_type": {
+        "check": [
+          751,
+          467,
+          412
+        ],
+        "official": [
+          751,
+          467,
+          412
+        ],
+        "official_f1": 0.6308273834523309
+      },
+      "pair_novelty": {
+        "check": [
+          730,
+          488,
+          433
+        ],
+        "official": [
+          730,
+          488,
+          433
+        ],
+        "official_f1": 0.6131877362452751
+      },
+      "pair_type_novelty": {
+        "check": [
+          592,
+          626,
+          571
+        ],
+        "official": [
+          592,
+          626,
+          571
+        ],
+        "official_f1": 0.49727005459890805
+      }
+    }
+  },
+  "bootstrap": {
+    "all_association": {
+      "f1": 0.15468940316686966,
+      "ci95": [
+        0.12066166327569768,
+        0.19272291626783913
+      ]
+    }
+  },
+  "failures": []
+}
